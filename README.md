@@ -23,7 +23,10 @@ What things you need to install the software and how to install them
 
 ###  Demo
 
-[![N|Solid]()]()
+[![N|Solid](https://drive.google.com/uc?export=download&id=1LpO10lK8SpGUZxmtczgpLbT6Rnr2dfNW)]()
+[![N|Solid](https://drive.google.com/uc?export=download&id=1LQyN7E8tTOQBiiPPsUpTTDP1yI3vUtee)]()
+[![N|Solid](https://drive.google.com/uc?export=download&id=1Zufwj2NQiHn3IhuZmQcfrUKGNZ0_4O0G)]()
+[![N|Solid](https://drive.google.com/uc?export=download&id=1U5HUv0b9bq3-KDiixfy7W8WfxbANv_Pe)]()
 
 ## Authors
 
