@@ -1,0 +1,215 @@
+function login_validate()
+{
+	var username = $("#login_user_name").val();
+	var password = $("#login_user_password").val();
+	$("#login_status").html("");
+	if(username==false || username==null || username=="")
+			{
+		    $("#login_status").html("");
+			$( "#password_status" ).removeClass( "input-control text full-size error" ).addClass( "input-control text full-size" );	
+			$("#login_status").html("<font color=red>Please Enter Username</font>");
+			$( "#username_status" ).removeClass( "input-control text full-size" ).addClass( "input-control text full-size error" );
+
+			}
+	else if(password==false || password==null || password=="")
+			{
+		    $("#login_status").html("");
+		    $( "#username_status" ).removeClass( "input-control text full-size error" ).addClass( "input-control text full-size" );
+			$("#login_status").html("<font color=red>Please Enter Password</font>");
+			$( "#password_status" ).removeClass( "input-control text full-size" ).addClass( "input-control text full-size error" );
+			}
+	else
+		{
+		$("#login_status").html("");
+		$.post("student/login_check.php?uname="+username+"&pwd="+password,function(logindata){
+			if(logindata==1)
+				window.location.href="Student/user_page.php";
+			else if(logindata==2)
+				$("#login_status").html("<font color=red>You are Tempararly Banned !!</font>");
+			else
+				$("#login_status").html("<font color=red>Login Failed..</font>");
+				
+				
+		});
+		return false;
+		}
+	
+	return false;
+}
+
+
+function register_validate()
+{
+	var firstname = $("#register_firstname").val();
+	var lastname = $("#register_lastname").val();
+	var email = $("#register_email").val();
+	var mobile =$("#register_mobile").val();
+	var branch = $("#register_branch").val();
+	var regclass = $("#register_class").val();
+	var password =$("#register_password").val();
+	var confirm_password = $("#register_confirm_password").val();
+	var year = $("#register_year").val();
+	var dob = $("#register_dob").val();
+	var security_question = $("#register_security_question").val();
+	var security_answer =$("#register_security_answer").val();
+	var gender =$('input[name=register_gender]:checked', '#regform').val()
+	var address =$("#register_address").val();
+	if(firstname==false || gender==false || lastname==false || email==false || address==false || dob==false || mobile==false || branch==false || regclass==false || password==false || confirm_password==false || year==false ||  security_question==false || security_answer==false)
+			{
+			alert("Fill required fileds");
+			}
+	else
+		{
+		if(password==confirm_password)
+		{
+		$.post("Student/reg_process.php?fname="+firstname+"&lname="+lastname+"&email="+email+"&mobile="+mobile+"&dob="+dob+"&branch="+branch+"&class="+regclass+"&password="+password+"&year="+year+"&sq="+security_question+"&sqa="+security_answer+"&gender="+gender+"&address="+address,function(regdata){
+			var ok=confirm(regdata);
+			if(ok==true)
+				{
+				window.location.href='index.php';
+				}
+	
+		});
+		}
+		else
+			{
+			alert("Password and Confirm must be same");
+			}
+		return false;
+		}
+	
+	return false;
+}
+
+function profile_validate()
+{
+
+	var firstname = $("#profile_firstname").val();
+	var lastname = $("#profile_lastname").val();
+	var mobile =$("#profile_mobile").val();
+	var branch = $("#profile_branch").val();
+	var regclass = $("#profile_class").val();
+	var year = $("#profile_year").val();
+	var dob = $("#profile_dob").val();
+	var address =$("#profile_address").val();
+	
+	if(firstname==false || lastname==false || address==false || dob==false || mobile==false || branch==false || regclass==false || year==false)
+			{
+			alert("Fill all fileds");
+			return false;
+			}
+	else
+		{
+		
+		$.post("profile_edit_process.php?fname="+firstname+"&lname="+lastname+"&mobile="+mobile+"&dob="+dob+"&branch="+branch+"&class="+regclass+"&year="+year+"&address="+address,function(edited_data){
+			
+			$("#prof_status").html(edited_data);
+			
+			});
+	
+		return false;
+	
+		}
+}
+
+function logout()
+{
+$.post("logout.php",function(){
+	
+	window.location.href="../index.php";
+});	
+}
+function load(event)
+{
+    
+$("#questions_div").html("<div data-role=preloader data-type=metro data-style=color style=margin-top:20% ></div>").load(event+".php");	
+$("#q1").css({"background-color":"white"});
+}
+
+function load_this(event)
+{
+	$("#main_div").html("<div data-role=preloader data-type=metro data-style=color style=margin-top:20% ></div>").load(event+".php");
+}
+
+
+function feedback_validate()
+{
+	
+	var feed_sub = $("#feedback_subject").val();
+	var feed_msg = $("#feedback_msg").val();
+	if(feed_sub == false || feed_msg==false)
+			{
+			
+			alert("Fill required Fields");
+						
+			
+			
+			}
+	else
+		{
+		$.post("feedback_db_connection.php?sub="+feed_sub+"&msg="+feed_msg,function(feeddata){
+			$("#feedback_status").html(feeddata);
+		});
+		}
+			
+}
+
+function showCharm(id){
+    var  charm = $("#"+id+"-charm").data("charm");
+   charm.open();
+    
+}
+
+function charms_close()
+{
+	$("#top-charm").data("charm").close();
+	$("#left-charm").data("charm").close();
+
+}
+
+function exam_start_check(exam_code) {
+    var person = confirm("Do you want to start exam now ?");
+    
+    if(person==true)
+    {
+    	$.post("exam_pattern.php?exam_code="+exam_code,function(exam_data){
+    		$("#main_div").html(exam_data);
+    		showCharm('left');
+    		showCharm('top');
+    		
+    	});
+    }
+    	
+}
+
+function change_password()
+{
+ 
+ var old_password=$("#profile_old_password").val();	
+ var new_password=$("#profile_new_password").val();
+ var confirm_password=$("#profile_confirm_password").val();
+ if(old_password==false || new_password==false || confirm_password==false)
+	 {
+	 alert("Fill required fields" );
+	 return false;
+	 }
+ else
+	 {
+	 if(new_password==confirm_password)
+		 {
+		 
+		 $.post("password_change_process.php?old_pass="+old_password+"&new_pass="+new_password+"&confirm_pass="+confirm_password,function(change_data){
+			 
+			 $("#confirm_password_div").html(change_data);
+		 });
+		 return false;
+		 }
+	 else
+		 {
+		 alert("new passowrd and confirm password must be same");
+		 return false;
+		 }
+	 
+	 return false;
+	 }
+}

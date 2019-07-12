@@ -1,0 +1,21 @@
+<?php 
+session_start();
+include '../../config/dbconnect.php';
+
+$updates = mysql_query("SELECT * FROM exam_updates ORDER BY update_created_time DESC LIMIT 1,10") or die(mysql_error());
+
+while($row=mysql_fetch_array($updates))
+{
+?>
+<div style='border-color:blue' class="image-container bordered handing ani image-format-small">
+        <div class="frame" style='border-width:2px;border-color:#1a8cff;width:200px;height:130px;background-color:#ffffff'>
+         <label ><font color=#1a8cff>Subject :</font><?php echo $row['subject'];?></label><Br>
+         <label ><font color=#1a8cff>To:</font><?php echo $row['msg_to'];?></label><br><Br><Br>
+         <button class="button small-button rounded" >View</button>
+         
+        </div>
+    </div> 
+    &nbsp;&nbsp;&nbsp;
+<?php 
+}
+?> 

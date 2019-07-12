@@ -1,0 +1,58 @@
+
+<table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
+                        <thead>
+                        <tr>
+                            <td style="width: 20px">
+                            </td>
+                            <td class="sortable-column sort-asc" style="width: 100px">ID</td>
+                            <td class="sortable-column">Exam Name</td>
+                         
+                            <td class="sortable-column" style="width: 20px">Status</td>
+                            <td style="width: 20px">START</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        
+                            <td>
+                                <label class="input-control checkbox small-check no-margin">
+                                    <input type="checkbox">
+                                    <span class="check"></span>
+                                </label>
+                            </td>
+                            <td>1</td>
+                            <td>Exam 1</td>
+                            
+                            <td class="align-center"><span class="mif-checkmark fg-green"></span></td>
+                            <td>
+                                 <button class="button rounded" disabled >
+		    					
+		   										 Start
+		   
+										</button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="input-control checkbox small-check no-margin">
+                                    <input type="checkbox">
+                                    <span class="check"></span>
+                                </label>
+                            </td>
+                            <td>2</td>
+                            <td>Exam 2</td>
+                            
+                            
+                                                        <td class="align-center"><span class="mif-stop fg-red"></span></td>
+                            <td>
+                            
+                                <button class="button success rounded" onclick="exam_start_check()" >
+		    					
+		   										Start
+                            						
+		   										 
+		   										 </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>

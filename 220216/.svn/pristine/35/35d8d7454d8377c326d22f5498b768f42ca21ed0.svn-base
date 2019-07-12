@@ -1,0 +1,86 @@
+<?php 
+session_start();
+include '../../config/dbconnect.php';
+if(isset($_REQUEST['exam_code']))
+{
+	$exam_code = htmlspecialchars(mysql_real_escape_string($_REQUEST['exam_code']));
+	echo $exam_code;
+?>
+<table style="width:80%;background-color:#4da6ff;">
+<tr>
+<td >test-1</td>
+</tr>
+<tr style="width:80%;background-color:#99ccff;">
+<td>Question 1 of 8 </td>
+<td>Attempted questions 2 of 10 </td>
+<td>Attempted questions 2 of 10 </td>
+<td>previous and next</td>
+<td><button class="button warning rounded"  onclick="charms_close()" >Submit</button></td>
+</tr>
+</table>
+
+<br><br><br><br>
+<table width=70%;>
+
+<tr>
+<td>
+<div class="panel" style="width:800px;height:400px;background-color:white;" >
+    
+   
+        <div class="flex-grid no-responsive-future">
+            <div class="row" style="height: 100%;">
+                <div class="cell size-x50" id="cell-sidebar" height=100% >
+               		
+                    <ul class="sidebar" style="padding-top:20px;background-color:#ffffff;">
+                        <li  onclick="load('question1')" class="active" style="background-color:#66b3ff;" id="1"><a href="#">
+                        1.  
+                         </a></li>
+                         <li  onclick="load_this('question1')" class="active" style="background-color:#66b3ff;" id="2" ><a href="#">
+                        2.  
+                         </a></li>
+                          <li  onclick="load_this('question1')" class="active" style="background-color:#66b3ff;" id="3" ><a href="#">
+                        3.  
+                         </a></li>
+                          <li  onclick="load_this('question1')" class="active" style="background-color:#66b3ff;" id="4"><a href="#">
+                        4.  
+                         </a></li>
+                          <li onclick="load_this('question1')" class="active" style="background-color:#66b3ff;" id="5"><a href="#">
+                        5.  
+                         </a></li>
+                          <li onclick="load_this('question1')" class="active" style="background-color:#66b3ff;" id="6"><a href="#">
+                        6.  
+                         </a></li>
+                        
+                    </ul>
+                    
+                </div>
+                <div  id="questions_div" style="padding-top:20px;padding-left:20px;">
+            		
+            </div>
+            </div>
+      </div>
+  
+  
+  </div>
+<td style="padding-left:10px;"></td>
+
+
+
+<td>
+<div class="panel" style="width:200px;height:150px;background-color:orange;">
+    
+    <center style="padding-top:40px;"><h3>SCORE</h3></center>	</div>
+   
+   <br><br>
+   <div class="panel" style="width:200px;height:150px;background-color:yellow;">
+    
+    <center style="padding-top:40px;"><h3> Negative Score</h3></center></div>
+</td>
+</tr>
+</table>
+
+<?php 
+}
+else 
+	echo "Wrong path";
+?>
